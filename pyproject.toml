@@ -1,0 +1,48 @@
+[project]
+name = "wcrp-common-attribution-assessment"
+version = "0.1.0"
+description = "Python project scaffold for the WCRP common attribution assessment."
+readme = "README.md"
+authors = [
+    { name = "njleach", email = "njleach.1@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+wcrp-common-attribution-assessment = "wcrp_common_attribution_assessment:main"
+
+[build-system]
+requires = ["uv_build>=0.10.4,<0.11.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.5.0",
+    "python-semantic-release>=9.21.1,<10",
+    "ruff>=0.11.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src"]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+]
+
+[tool.semantic_release]
+branch = "main"
+build_command = "uv build"
+changelog_file = "CHANGELOG.md"
+commit_message = "chore(release): {version} [skip ci]"
+dist_path = "dist/"
+upload_to_pypi = false
+version_toml = ["pyproject.toml:project.version"]
+version_variables = [
+    "src/wcrp_common_attribution_assessment/__init__.py:__version__",
+]
