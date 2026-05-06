@@ -25,6 +25,7 @@ if __name__ == "__main__":
         )  # select chosen PNW domain
         .resample(valid_time="1D")
         .max()  # resample to daily maximum at each gridpoint
+        .weighted(np.cos(np.deg2rad(era5.latitude.sel(latitude=slice(52, 45)))))
         .mean(dim=["latitude", "longitude"])  # average over the domain
         .compute()  # trigger computation and load into memory
     )
