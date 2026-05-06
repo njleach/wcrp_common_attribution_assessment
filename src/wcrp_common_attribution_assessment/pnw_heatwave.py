@@ -7,6 +7,9 @@ from wcrp_common_attribution_assessment import constants
 
 if __name__ == "__main__":
     print("Opening ERA5 dataset...", flush=True)
+    # To ensure a common dataset source is used, we use the DestinE Earth Data Hub ARCO zarr.
+    # Note that to be able to access this dataset, you will need to set up an Earthdata login
+    # and configure your environment. See the DestinE Earth Data Hub documentation for details.
     era5 = xr.open_dataset(
         "https://data.earthdatahub.destine.eu/era5/reanalysis-era5-single-levels-v0.zarr",
         storage_options={"client_kwargs": {"trust_env": True}},
