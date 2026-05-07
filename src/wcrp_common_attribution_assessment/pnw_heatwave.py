@@ -1,5 +1,3 @@
-from pathlib import Path
-
 import numpy as np
 import xarray as xr
 
@@ -89,7 +87,7 @@ if __name__ == "__main__":
     for line in output_lines:
         print(line, flush=True)
 
-    output_path = Path("outputs/pnw_heatwave.event_definitions")
+    output_path = constants.OUTPUTS_DIR / "pnw_heatwave.event_definitions"
     print(f"Writing event definitions to {output_path}...", flush=True)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text("\n".join(output_lines) + "\n")
