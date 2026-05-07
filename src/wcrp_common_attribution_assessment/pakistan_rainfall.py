@@ -68,37 +68,32 @@ if __name__ == "__main__":
         flush=True,
     )
     # 1. Absolute definition
-    pr_jja_absolute = pr_jja.sel(year=2022).squeeze().item() * MM_PER_M
+    pr_jja_absolute = pr_jja.sel(year=2022).squeeze()
 
     # 2. Seasonal mean anomaly definition
-    pr_jja_anom = (
-        pr_jja.sel(year=2022).squeeze() - pr_jja.sel(year=slice(1991, 2020)).mean()
-    ).item() * MM_PER_M
+    pr_jja_anom = pr_jja_absolute - pr_jja.sel(year=slice(1991, 2020)).mean()
 
     # 3. Seasonal mean standard deviation definition
-    pr_jja_stdev = (
-        (pr_jja.sel(year=2022).squeeze() - pr_jja.sel(year=slice(1991, 2020)).mean())
-        / pr_jja.sel(year=slice(1991, 2020)).std()
-    ).item()
+    pr_jja_stdev = pr_jja_anom / pr_jja.sel(year=slice(1991, 2020)).std()
 
     jja_output_lines = [
         (
             "Absolute event definition "
             "(2022 June-August accumulation of the Pakistan area-mean daily total precipitation, "
             "in mm): "
-            f"{pr_jja_absolute:.2f} mm"
+            f"{pr_jja_absolute.item() * MM_PER_M:.2f} mm"
         ),
         (
             "Seasonal-accumulation anomaly event definition "
             "(2022 June-August accumulation minus the 1991-2020 mean June-August Pakistan "
             "area-mean precipitation accumulation, in mm): "
-            f"{pr_jja_anom:.2f} mm"
+            f"{pr_jja_anom.item() * MM_PER_M:.2f} mm"
         ),
         (
             "Seasonal-accumulation standardized event definition "
             "(seasonal-accumulation anomaly divided by the 1991-2020 standard deviation of "
             "June-August Pakistan area-mean precipitation accumulation): "
-            f"{pr_jja_stdev:.2f}"
+            f"{pr_jja_stdev.item():.2f}"
         ),
     ]
 
@@ -110,36 +105,31 @@ if __name__ == "__main__":
         flush=True,
     )
     # 1. Absolute definition
-    rx5d_absolute = rx5d.sel(year=2022).squeeze().item() * MM_PER_M
+    rx5d_absolute = rx5d.sel(year=2022).squeeze()
 
     # 2. Annual maximum anomaly definition
-    rx5d_anom = (
-        rx5d.sel(year=2022).squeeze() - rx5d.sel(year=slice(1991, 2020)).mean()
-    ).item() * MM_PER_M
+    rx5d_anom = rx5d_absolute - rx5d.sel(year=slice(1991, 2020)).mean()
 
     # 3. Annual maximum standard deviation definition
-    rx5d_stdev = (
-        (rx5d.sel(year=2022).squeeze() - rx5d.sel(year=slice(1991, 2020)).mean())
-        / rx5d.sel(year=slice(1991, 2020)).std()
-    ).item()
+    rx5d_stdev = rx5d_anom / rx5d.sel(year=slice(1991, 2020)).std()
 
     rx5d_output_lines = [
         (
             "Absolute event definition "
             "(2022 annual maximum of the Pakistan area-mean 5-day precipitation sum, in mm): "
-            f"{rx5d_absolute:.2f} mm"
+            f"{rx5d_absolute.item() * MM_PER_M:.2f} mm"
         ),
         (
             "Annual-maximum anomaly event definition "
             "(2022 annual maximum minus the 1991-2020 mean annual maximum of the same "
             "Pakistan area-mean 5-day precipitation sum, in mm): "
-            f"{rx5d_anom:.2f} mm"
+            f"{rx5d_anom.item() * MM_PER_M:.2f} mm"
         ),
         (
             "Annual-maximum standardized event definition "
             "(annual-maximum anomaly divided by the 1991-2020 standard deviation of annual "
             "maxima for the same Pakistan area-mean 5-day precipitation sum): "
-            f"{rx5d_stdev:.2f}"
+            f"{rx5d_stdev.item():.2f}"
         ),
     ]
 
