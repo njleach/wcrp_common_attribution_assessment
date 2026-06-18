@@ -73,8 +73,8 @@ if __name__ == "__main__":
     # 2. Seasonal mean anomaly definition
     pr_jja_anom = pr_jja_absolute - pr_jja.sel(year=slice(1991, 2020)).mean()
 
-    # 3. Seasonal mean standard deviation definition
-    pr_jja_stdev = pr_jja_anom / pr_jja.sel(year=slice(1991, 2020)).std()
+    # 3. Seasonal mean anomaly as percentage of mean
+    pr_jja_anom_percent = pr_jja_absolute / pr_jja.sel(year=slice(1991, 2020)).mean()
 
     jja_output_lines = [
         (
@@ -91,9 +91,9 @@ if __name__ == "__main__":
         ),
         (
             "Seasonal-accumulation standardized event definition "
-            "(seasonal-accumulation anomaly divided by the 1991-2020 standard deviation of "
-            "June-August Pakistan area-mean precipitation accumulation): "
-            f"{pr_jja_stdev.item():.2f}"
+            "(2022 June-August accumulation divided by the 1991-2020 mean June-August "
+            "Pakistan area-mean precipitation accumulation): "
+            f"{pr_jja_anom_percent.item():.2%}"
         ),
     ]
 
@@ -110,8 +110,8 @@ if __name__ == "__main__":
     # 2. Annual maximum anomaly definition
     rx5d_anom = rx5d_absolute - rx5d.sel(year=slice(1991, 2020)).mean()
 
-    # 3. Annual maximum standard deviation definition
-    rx5d_stdev = rx5d_anom / rx5d.sel(year=slice(1991, 2020)).std()
+    # 3. Annual maximum anomaly as percentage of mean
+    rx5d_anom_percent = rx5d_absolute / rx5d.sel(year=slice(1991, 2020)).mean()
 
     rx5d_output_lines = [
         (
@@ -127,9 +127,9 @@ if __name__ == "__main__":
         ),
         (
             "Annual-maximum standardized event definition "
-            "(annual-maximum anomaly divided by the 1991-2020 standard deviation of annual "
-            "maxima for the same Pakistan area-mean 5-day precipitation sum): "
-            f"{rx5d_stdev.item():.2f}"
+            "(2022 annual maximum divided by the 1991-2020 mean annual maximum of the same "
+            "Pakistan area-mean 5-day precipitation sum): "
+            f"{rx5d_anom_percent.item():.2%}"
         ),
     ]
 
