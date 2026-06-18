@@ -1,5 +1,3 @@
-from pathlib import Path
-
 import numpy as np
 import xarray as xr
 
@@ -25,6 +23,7 @@ if __name__ == "__main__":
         )  # select chosen PNW domain
         .resample(valid_time="1D")
         .max()  # resample to daily maximum at each gridpoint
+        .weighted(np.cos(np.deg2rad(era5.latitude.sel(latitude=slice(52, 45)))))
         .mean(dim=["latitude", "longitude"])  # average over the domain
         .compute()  # trigger computation and load into memory
     )
@@ -88,7 +87,7 @@ if __name__ == "__main__":
     for line in output_lines:
         print(line, flush=True)
 
-    output_path = Path("outputs/pnw_heatwave.event_definitions")
+    output_path = constants.OUTPUTS_DIR / "pnw_heatwave.event_definitions"
     print(f"Writing event definitions to {output_path}...", flush=True)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text("\n".join(output_lines) + "\n")
