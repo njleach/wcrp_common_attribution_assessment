@@ -1,6 +1,25 @@
 # CHANGELOG
 
 
+## v0.2.0 (2026-06-18)
+
+### Features
+
+- Add Pakistan rainfall definitions
+  ([#2](https://github.com/njleach/wcrp_common_attribution_assessment/pull/2),
+  [`ebee408`](https://github.com/njleach/wcrp_common_attribution_assessment/commit/ebee4086f9edf2f50fc2a30c5fe587c6dedfb71e))
+
+* chore: add regionmask
+
+* fix: latitude weighting...
+
+* feat: add pakistan rainfall definition evaluation, minor change to project structure
+
+* chore: update pakistan code for consistency
+
+* fix: update pakistan alternate definition to be a percent of mean
+
+
 ## v0.1.0 (2026-05-06)
 
 ### Features
