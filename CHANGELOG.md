@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.3.0 (2026-10-14)
+
+### Features
+
+- Add era5 prep script ([#3](https://github.com/njleach/wcrp_common_attribution_assessment/pull/3),
+  [`c6c700d`](https://github.com/njleach/wcrp_common_attribution_assessment/commit/c6c700d8c08fe2e3d499d96b13b6e5e9fd58ac44))
+
+
 ## v0.2.0 (2026-06-18)
 
 ### Features
